@@ -1,7 +1,13 @@
 package com.dam.colision;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.random.RandomGenerator;
 
@@ -11,6 +17,8 @@ public class SnakeFX extends Application {
     private ArrayList<CuerpoSnake> serpiente;
     private final int DIMENSION = 5;
     private CuerpoSnake[][] tablero;
+
+    AnchorPane panel;
 
     // ObservableArray
 
@@ -41,7 +49,21 @@ public class SnakeFX extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
+        //   Parent root = FXMLLoader.load(getClass().getResource("FXMLVistaLibro.fxml"));
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(SnakeFX.class.getResource("tablero.fxml"));
+        panel = (AnchorPane) loader.load();
+
+        TableroController controller = loader.getController();
+        //  controller.iniciatabla(ObservableList v....  );
+
+        Scene scene = new Scene(panel);
+
+        primaryStage.setTitle("Libros");
+        primaryStage.setScene(scene);
+        primaryStage.show();
 
 
     }

@@ -4,6 +4,7 @@ public class CuerpoSnake {
     private int x;
     private int y;
 
+
     public CuerpoSnake(){
 
     }

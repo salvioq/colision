@@ -1,5 +1,4 @@
 package com.dam.colision;
-
 public class CuerpoSnake {
 
     private int x;

@@ -17,12 +17,12 @@
           <top>
               <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                   <buttons>
-                      <Button maxWidth="50.0" mnemonicParsing="false" onAction="#cambiaDireccion" text="OESTE" />
-                      <Button maxWidth="50.0" mnemonicParsing="false" onAction="#cambiaDireccion" text="ESTE" />
-                      <Button maxWidth="50.0" mnemonicParsing="false" onAction="#cambiaDireccion" text="NORTE" />
-                      <Button maxWidth="50.0" mnemonicParsing="false" onAction="#cambiaDireccion" text="SUR" />
+                      <Button id="O" maxWidth="50.0" mnemonicParsing="false" onAction="#cambiaDireccion" text="OESTE" />
+                      <Button id="E" maxWidth="50.0" mnemonicParsing="false" onAction="#cambiaDireccion" text="ESTE" />
+                      <Button id="N" maxWidth="50.0" mnemonicParsing="false" onAction="#cambiaDireccion" text="NORTE" />
+                      <Button id="S" maxWidth="50.0" mnemonicParsing="false" onAction="#cambiaDireccion" text="SUR" />
                       <Button maxWidth="50.0" mnemonicParsing="false" onAction="#redibujar" text="REFRESH!" />
-                      <Button maxWidth="50.0" mnemonicParsing="false" onAction="#redibujar" text="RESET" />
+                      <Button maxWidth="50.0" mnemonicParsing="false" onAction="#finalizar" text="RESET" />
 
                   </buttons>
               </ButtonBar>

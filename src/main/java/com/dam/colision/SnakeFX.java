@@ -1,6 +1,7 @@
 package com.dam.colision;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 
@@ -63,7 +64,7 @@ public class SnakeFX extends Application {
             TableroController controller = loader.getController();
             Scene scene = new Scene(panel);
 
-            controller.iniciar(panel,serpiente, DIMENSION);
+            controller.iniciar(panel,serpiente, DIMENSION,this);
 
             primaryStage.setTitle("SalvioSnakeFX");
             primaryStage.setScene(scene);
@@ -76,6 +77,10 @@ public class SnakeFX extends Application {
 
             };
         }
+    @Override
+    public void stop(){
+        Platform.exit();
+    }
 
 
 }

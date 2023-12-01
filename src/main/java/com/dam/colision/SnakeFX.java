@@ -3,18 +3,19 @@ package com.dam.colision;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.random.RandomGenerator;
+
 
 
 public class SnakeFX extends Application {
 
-    private ArrayList<CuerpoSnake> serpiente;
+    private ArrayList<CuerpoSnake> serpiente = new ArrayList<CuerpoSnake>();
     private final int DIMENSION = 5;
     private CuerpoSnake[][] tablero;
 
@@ -34,37 +35,47 @@ public class SnakeFX extends Application {
 
         int inicial_x = 2;
         int inicial_y = 2;
-        // enfoque tablero
-        for (int i = 0; i < DIMENSION ; i++) {
-            for (int j = 0; j < DIMENSION ; j++) {
-                tablero[i][j]=new CuerpoSnake(i,j);
-            }
-        }
-
         //enfoque sucesion de CuerpoSnakes
-        serpiente.add(new CuerpoSnake(inicial_x, inicial_y));
+        serpiente.add(new CuerpoSnake(inicial_x, inicial_y, true));
 
-        tablero[inicial_x][inicial_y]=new CuerpoSnake(inicial_x,inicial_y);
+//        // enfoque tablero
+//        for (int i = 0; i < DIMENSION ; i++) {
+//            for (int j = 0; j < DIMENSION ; j++) {
+//                tablero[i][j]=new CuerpoSnake(i,j);
+//            }
+//        }
+//        tablero[inicial_x][inicial_y]=new CuerpoSnake(inicial_x,inicial_y,true);
 
     }
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        //   Parent root = FXMLLoader.load(getClass().getResource("FXMLVistaLibro.fxml"));
+    public void start(Stage primaryStage) {
+                try {
+            //   Carga en root directamente lo cargado por el loader
+            //   Parent panel = FXMLLoader.load(getClass().getResource("FXMLVistaLibro.fxml"));
+            // o
+            //   Crea un loader para el .fxml
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(SnakeFX.class.getResource("tablero.fxml"));
+            //   Carga el nodo raiz panel
+            panel = (AnchorPane) loader.load();
+            //   Toma el fxcontroler enlazado al .fxml para tener su referencia
+            TableroController controller = loader.getController();
+            Scene scene = new Scene(panel);
 
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(SnakeFX.class.getResource("tablero.fxml"));
-        panel = (AnchorPane) loader.load();
+            controller.iniciar(panel,serpiente, DIMENSION);
 
-        TableroController controller = loader.getController();
-        //  controller.iniciatabla(ObservableList v....  );
+            primaryStage.setTitle("SalvioSnakeFX");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+            //
 
-        Scene scene = new Scene(panel);
+        } catch (IOException e) {
+            System.out.println("Posible error de carga de .fxml");
+            System.out.println(e.getStackTrace());
 
-        primaryStage.setTitle("Libros");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+            };
+        }
 
 
-    }
 }
